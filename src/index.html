@@ -29,8 +29,11 @@
 
   <link href="build/main.css" rel="stylesheet">
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="node_modules/chart.js/src/chart.js"></script>
+
 </head>
-<body>
+<body onload="requestDB()">
 
   <!-- Ionic's root component and where the app will load -->
   <ion-app></ion-app>
@@ -44,6 +47,103 @@
 
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
+
+
+
+  <script>
+  var edad = null;
+  var diccionario1={};
+  var diccionarioMujer1={};
+  var diccionarioHombre1={};
+  var diccionarioEdad1={};
+  function requestDB(){
+      $.ajax({url: "https://fir-login-6c915.firebaseio.com/Usuarios.json", success: function(result){
+        console.log(result);
+        var myApps=[];
+        var myTiempo=[];
+        var diccionario={};
+        var diccionarioMujer={};
+        var diccionarioHombre={};
+        var diccionarioEdad={};
+
+        //var edad = document.getElementsByName("edad")[0].value;
+        $.each(result,function(key,value){
+          if(value['usuarioEdad']== edad){
+            $.each(value['Aplicaciones'],function(keyApp,valueApp){
+
+              if(diccionarioEdad[valueApp['name']] === undefined){
+                diccionarioEdad[valueApp['name']] = parseInt(valueApp['tiempo']);
+                //console.log(diccionarioHombre);
+              }else{
+                  var prueba = parseInt(valueApp['tiempo']);
+                  prueba1 = diccionarioEdad[valueApp['name']];
+                  var total = prueba + parseInt(prueba1);
+                  diccionarioEdad[valueApp['name']] = total;
+              }
+
+            });
+            console.log("Usuario de 22");
+            console.log(edad);
+            console.log(diccionarioEdad);
+            diccionarioEdad1=diccionarioEdad;
+          }
+          if(value['usuarioGenero'] === "Hombre"){
+            $.each(value['Aplicaciones'],function(keyApp,valueApp){
+
+              if(diccionarioHombre[valueApp['name']] === undefined){
+                diccionarioHombre[valueApp['name']] = (valueApp['tiempo']);
+                //console.log(diccionarioHombre);
+              }else{
+                  var prueba = parseInt(valueApp['tiempo']);
+                  prueba1 = diccionarioHombre[valueApp['name']];
+                  var total = prueba + parseInt(prueba1);
+                  diccionarioHombre[valueApp['name']] = total;
+              }
+
+            });
+            //console.log(diccionarioHombre);
+            diccionarioHombre1=diccionarioHombre;
+          } if(value['usuarioGenero'] === "Mujer"){
+            $.each(value['Aplicaciones'],function(keyApp,valueApp){
+
+              if(diccionarioMujer[valueApp['name']] === undefined){
+                diccionarioMujer[valueApp['name']] = (valueApp['tiempo']);
+                //console.log(diccionarioMujer);
+              }else{
+                  var prueba = parseInt(valueApp['tiempo']);
+                  prueba1 = diccionarioMujer[valueApp['name']];
+                  var total = prueba + parseInt(prueba1);
+                  diccionarioMujer[valueApp['name']] = total;
+              }
+
+            });
+            //console.log(diccionarioMujer);
+            diccionarioMujer1=diccionarioMujer;
+
+          }
+          $.each(value['Aplicaciones'],function(keyApp,valueApp){
+            myApps.push(valueApp['name']);
+            myTiempo.push(valueApp['tiempo']);
+            if(diccionario[valueApp['name']] === undefined){
+              diccionario[valueApp['name']] = (valueApp['tiempo']);
+              //console.log(diccionario);
+            }else{
+                var prueba = parseInt(valueApp['tiempo']);
+                prueba1 = diccionario[valueApp['name']];
+                //console.log(prueba1);
+                var total = prueba + parseInt(prueba1);
+                diccionario[valueApp['name']] = total;
+            }
+
+          });
+        /*  console.log(myApps);
+          console.log(myTiempo);
+          console.log(diccionario);*/
+          diccionario1=diccionario;
+        });
+      }});
+    }
+  </script>
 
 </body>
 </html>

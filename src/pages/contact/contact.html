@@ -1,17 +1,66 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Edad
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+<ion-content class="center">
+
+
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col class="center">
+          <ion-list>
+            <ion-item>
+              <ion-label floating>Age</ion-label>
+              <ion-input type="number" [(ngModel)]="userInput"></ion-input>
+            </ion-item>
+            <p></p>
+            <button ion-button icon-only class="center" (click)="btnClicked()">
+              <ion-icon name="send"></ion-icon>
+            </button>
+          </ion-list>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <div padding>
+      <ion-segment [(ngModel)]="segment" (ionChange)="calc(segment)">
+        <ion-segment-button value="doughnut">
+          Doughnut
+        </ion-segment-button>
+        <ion-segment-button value="Vaciar">
+          Vaciar
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <div [ngSwitch]="segment" style="segment">
+      <ion-list *ngSwitchCase="'Vaciar'">
+              <div width="600" height="800">
+                <div style="display: block" >
+                  <canvas baseChart
+                              [data]="doughnutChartData"
+                              [labels]="doughnutChartLabels"
+                              [chartType]="doughnutChartType"></canvas>
+                </div>
+              </div>
+      </ion-list>
+      <ion-list *ngSwitchCase="'doughnut'">
+              <div width="600" height="800">
+                <div style="display: block" >
+                  <canvas baseChart
+                              [data]="doughnutChartData"
+                              [labels]="doughnutChartLabels"
+                              [chartType]="doughnutChartType"></canvas>
+                </div>
+              </div>
+      </ion-list>
+    </div>
+
+
 </ion-content>

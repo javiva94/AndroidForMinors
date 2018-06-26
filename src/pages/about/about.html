@@ -1,11 +1,44 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      Hombre/Mujer
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+  <div padding>
+    <ion-segment [(ngModel)]="segment" (ionChange)="calc(segment)">
+      <ion-segment-button  value="Hombre">
+        Hombre
+      </ion-segment-button>
+      <ion-segment-button value="Mujer">
+        Mujer
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 
+  <div [ngSwitch]="segment" style="segment">
+    <ion-list *ngSwitchCase="'Hombre'" >
+      <div width="600" height="800">
+        <div style="display: block" >
+          <canvas baseChart
+                      [data]="doughnutChartData"
+                      [labels]="doughnutChartLabels"
+                      [chartType]="doughnutChartType"></canvas>
+        </div>
+      </div>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Mujer'">
+            <div width="600" height="800">
+              <div style="display: block" >
+                <canvas baseChart
+                            [data]="doughnutChartData"
+                            [labels]="doughnutChartLabels"
+                            [chartType]="doughnutChartType"></canvas>
+              </div>
+            </div>
+    </ion-list>
+  </div>
 </ion-content>
