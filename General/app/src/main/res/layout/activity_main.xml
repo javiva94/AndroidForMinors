@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.firebase.javi.firebasedatabase.MainActivity">
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="107dp"
+        android:ems="10"
+        android:hint="Escribe tu nombre"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+    <EditText
+        android:id="@+id/editTextEdad"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:hint="Escribe tu Edad"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="240dp" />
+
+    <Spinner
+        android:id="@+id/spinnerGenero"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editTextEdad"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:entries="@array/genero"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="336dp" />
+
+    <Button
+        android:id="@+id/buttonAddPersona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/spinnerGenero"
+        android:layout_marginTop="74dp"
+        android:text="Añadir Usuario"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="473dp" />
+
+</RelativeLayout>
